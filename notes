@@ -1,0 +1,32 @@
+\\\ CANCEL PATREON MEMBERSHIP AFTER PROJECT IS OVER ///
+
+sync with github  
+    git add .
+    get commit -m "#meaningful present tense commit comment here"
+    get push 
+
+
+API URL = https://www.thecocktaildb.com/api.php
+https://www.thecocktaildb.com/api/json/v2/9973533/recent.php
+
+Testing API key is "1"
+Final API key is in production as of now. 1/30/2021 12:50 EST
+    API Key 9973533
+        All the instructions are on the API tutorial page, just change the API key and the V1 to V2 in the URL. 
+
+        As an example the new API URL will be:
+        https://www.thecocktaildb.com/api/json/v2/9973533/recent.php  
+        https://www.themealdb.com/api/json/v2/9973533/latest.php
+
+        You can read all the API instructions here:
+        https://www.themealdb.com/api.php       
+        https://www.thecocktaildb.com/api.php 
+
+
+process flow ideas
+
+1-asking user for liquor input by name or selection of the top 5 liquors in the us
+2-taking that input and providing a list of drinks for the user to choose. 
+    a-listing by groups of 10 or asking the user to list them all
+3-taking the users selection and listing the recipe to make the drink
+4-asking the user to either continue to another selection or to quit
