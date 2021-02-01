@@ -41,26 +41,17 @@ class Cli
         puts "9. Manhattan"  
         puts "10. Moscow Mule"
         puts ""
-        #needs to send the input to the url for api response
         input = gets.strip
         self.send_top_ten_drinks_to_api(input)
-        binding.pry
     end
 
-    def send_top_ten_drinks_to_api(arg)
-    end
-
-    top_ten = {"1" => "Mojito", "2" => "Old-Fashion", "3" => "Long-Island-Tea", "4" => "Negroni", "5" => "Whisky-Sour", "6" => "Dry-Martini", "7" => "Daiquiri", "8" => "Margarita", "9" => "Manhattan", "10" => "Moscow-Mile"}
-
+    def send_top_ten_drinks_to_api(input)
+        top_ten = {"1" => "Mojito", "2" => "Old-Fashion", "3" => "Long-Island-Tea", "4" => "Negroni", "5" => "Whisky-Sour", "6" => "Dry-Martini", "7" => "Daiquiri", "8" => "Margarita", "9" => "Manhattan", "10" => "Moscow-Mile"}
+        new_drink = Api.get_drink_by_name(top_ten[(input)])
     binding.pry
+    end
 
 
-    # def send_top_ten_drinks_to_api(input)
-    #     if input == "1"
-    #         input = "mojito"
-    #         self.get_drink_by_name(by_name)  
-    #     end
-    # end
 
     def request_from_liquor
         puts "Please enter a type of liquor to see a list of drinks"

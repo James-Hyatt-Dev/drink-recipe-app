@@ -5,18 +5,24 @@ class Api
     def self.get_drink_by_liquor(liquor)
         url = "https://www.thecocktaildb.com/api/json/v2/#{@@apikey}/filter.php?i=#{liquor.capitalize}"
         response = HTTParty.get(url)
-        liquor_name_hash = response["drinks"].each {|j| j.delete("strDrinkThumb")}
-        binding.pry
-        Drink.new(liquor_name_hash)
+        liquor_name_array = response["drinks"].each {|j| j.delete("strDrinkThumb")}
+        # binding.pry
+        liquor_name_array.each do |drink|
+            Drink.new(drink)
+            # binding.pry
+        end
+            
     end
 
-    def self.get_drink_by_name(by_name)
-        url "https://www.thecocktaildb.com/api/json/v2/#{@@apikey}/search.php?s=#{by_name.capitalize}"
+    def self.get_drink_by_name(drink)
+        url = "https://www.thecocktaildb.com/api/json/v2/#{@@apikey}/search.php?s=#{drink.capitalize}"
         response = HTTParty.get(url)
-        recipe_hash = response {}
         binding.pry
+        recipe_array = response {}
+        # binding.pry
         #something
     end
+
 
 
 
