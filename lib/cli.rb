@@ -46,10 +46,15 @@ class Cli
     end
 
     def send_top_ten_drinks_to_api(input)
-        top_ten = {"1" => "Mojito", "2" => "Old-Fashion", "3" => "Long-Island-Tea", "4" => "Negroni", "5" => "Whisky-Sour", "6" => "Dry-Martini", "7" => "Daiquiri", "8" => "Margarita", "9" => "Manhattan", "10" => "Moscow-Mile"}
+        top_ten = {"1" => "Mojito", "2" => "Old-Fashioned", "3" => "Long-Island-Tea", "4" => "Negroni", "5" => "Whisky-Sour", "6" => "Dry-Martini", "7" => "Daiquiri", "8" => "Margarita", "9" => "Manhattan", "10" => "Moscow-Mule"}
         new_drink = Api.get_drink_by_name(top_ten[(input)])
-    binding.pry
     end
+
+    def display_recipe_for_user_drink
+
+    end
+
+
 
 
 

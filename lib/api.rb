@@ -17,13 +17,21 @@ class Api
     def self.get_drink_by_name(drink)
         url = "https://www.thecocktaildb.com/api/json/v2/#{@@apikey}/search.php?s=#{drink.capitalize}"
         response = HTTParty.get(url)
-        binding.pry
-        recipe_array = response {}
-        # binding.pry
-        #something
+        ingredients = response["drinks"][0].select do |k,v|
+            k.include?("strIngredient")
+        end.values.select do |j|
+            j !=nil
+        end
+        measurements = response["drinks"][0].select do |k,v|
+            k.include?("strMeasure")
+        end.values.select do |j|
+            j !=nil
+        end
+        recipe_hash = {glass: response["drinks"][0]["strGlass"], instructions: response["drinks"][0]["strInstructions"], ingredients: ingredients, amounts: measurements}
+        Drink.new(drink)
     end
-
-
+    
+    
 
 
 end
