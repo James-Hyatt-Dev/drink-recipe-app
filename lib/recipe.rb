@@ -9,14 +9,13 @@ class Recipe
             self.send("#{k}=", "#{v}") if self.respond_to?("#{k}=")
         end
         @@all_recipes << self
-        Cli.display_user_request
-
-        binding.pry
     end
 
     def self.all_recipes
         @@all_recipes
     end
+
+   
 
 
 
