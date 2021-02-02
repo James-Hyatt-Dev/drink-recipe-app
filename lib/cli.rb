@@ -48,50 +48,50 @@ class Cli
     def user_input(input)
         top_ten = {"1" => "Mojito", "2" => "Old Fashioned", "3" => "Long Island Tea", "4" => "Negroni", "5" => "Mai Tai", "6" => "Dry Martini", "7" => "Daiquiri", "8" => "Margarita", "9" => "Manhattan", "10" => "Moscow Mule"}
          if input == "1" || input == "mojito" || input == "Mojito" 
-            new_recipe = Api.get_drink_by_name(top_ten["1"])
+            new_drink = Api.get_drink_by_name(top_ten["1"])
         elsif input == "2" || input == "old fashioned" || input == "Old fashioned" || input == "Old Fashioned" || input == "old" || input == "Old" 
-            new_recipe = Api.get_drink_by_name(top_ten["2"])
+            new_drink = Api.get_drink_by_name(top_ten["2"])
         elsif input == "3" || input == "long island tea" || input == "Long island tea" || input == "Long Island Tea" || input == "long" || input == "Long" 
-            new_recipe = Api.get_drink_by_name(top_ten["3"])
+            new_drink = Api.get_drink_by_name(top_ten["3"])
         elsif input == "4" || input == "negroni" || input == "Negroni" || input == "neg" || input == "Neg" || input == "negron" 
-            new_recipe = Api.get_drink_by_name(top_ten["4"])
+            new_drink = Api.get_drink_by_name(top_ten["4"])
         elsif input == "5" || input == "Mai Tai" || input == "mai tai" || input == "Mai tai" || input == "Mai" || input == "mai" 
-            new_recipe = Api.get_drink_by_name(top_ten["5"])
+            new_drink = Api.get_drink_by_name(top_ten["5"])
         elsif input == "6" || input == "dry martini" || input == "Dry Martini" || input == "Dry martini" || input == "Dry" || input == "dry" 
-            new_recipe = Api.get_drink_by_name(top_ten["6"])
+            new_drink = Api.get_drink_by_name(top_ten["6"])
         elsif input == "8" || input == "margarita" || input == "Margarita" || input == "Marg" || input == "marg" || input == "margarit" 
-            new_recipe = Api.get_drink_by_name(top_ten["8"])
+            new_drink = Api.get_drink_by_name(top_ten["8"])
         elsif input == "7" || input == "daiquiri" || input == "Daiquiri" || input == "Daquiri" || input == "daquiri" || input == "dag" 
-            new_recipe = Api.get_drink_by_name(top_ten["7"])
+            new_drink = Api.get_drink_by_name(top_ten["7"])
         elsif input == "9" || input == "manhattan" || input == "Manhattan" || input == "manhatan" || input == "Manhatan" || input == "man" 
-            new_recipe = Api.get_drink_by_name(top_ten["9"])
+            new_drink = Api.get_drink_by_name(top_ten["9"])
         elsif input == "10" || input == "moscow mule" || input == "Moscow Mule" || input == "Moscow mule" || input == "mule" || input == "mos" 
-            new_recipe = Api.get_drink_by_name(top_ten["10"])
+            new_drink = Api.get_drink_by_name(top_ten["10"])
         elsif input == "LIQUOR"
             request_from_liquor
         else
             puts "Your input was invalid."
             self.ask_for_drink_or_input
         end
-        self.recipe_display(new_recipe)
+        self.recipe_display(new_drink)
         # self.main_menu
 
     end
 
-    def recipe_display(new_recipe)
-        puts "All the wonderful information you requested for your drink, #{new_recipe.name}"
+    def recipe_display(new_drink)
+        puts "All the wonderful information you requested for your drink, #{new_drink.name}"
         puts ""
-        puts "The recommended glass to use is a/an #{new_recipe.glass}"
+        puts "The recommended glass to use is a/an #{new_drink.glass}"
         puts ""
         puts "The ingredients you will need are:"
-        puts "#{new_recipe.ingredients}"
+        puts "#{new_drink.ingredients}"
         puts ""
         puts "In the same order of the ingredients, the amounts of each are:"
-        puts "#{new_recipe.amounts}"
+        puts "#{new_drink.amounts}"
         puts ""
         puts "Now the best part! Time to make your drink!"
         puts ""
-        puts "#{new_recipe.instructions}"
+        puts "#{new_drink.instructions}"
         self.main_menu
     end
 
@@ -129,4 +129,14 @@ class Cli
         #needs to send the input to the url for the api response
         input = gets.strip
         new_drink = Api.get_drink_by_liquor(input)
+    end
+
+    def display_drinks_by_liquor(new_drink)
+        
+        puts "Well now you have a potentially large list of drinks, would you like to go through them all or see the first 10?"
+        puts "#{new_drink.name}"
+        
+
+        ""
+        
     end

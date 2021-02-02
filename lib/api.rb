@@ -5,24 +5,15 @@ class Api
     def self.get_drink_by_liquor(liquor)
         url = "https://www.thecocktaildb.com/api/json/v2/#{@@apikey}/filter.php?i=#{liquor}"
         response = HTTParty.get(url)
+        binding.pry
         liquor_name_array = response["drinks"].each {|j| j.delete("strDrinkThumb")}
-        liquor_name_array.each do |drink|
-
-    #     names = response["drinks"][0].select do |k,v|
-    #         k.include?("strDrink")
-    #     end.values.select do |j|
-    #         j == j
-    # end
-
-        # liquor_name_array = {
-        #     liquor: "#{liquor}", 
-        # names: name, 
-        # ids: id
-    # }
-            binding.pry
-            Drink.new(liquor_name_array)
+        liquor_name_array.each do |j|
+            drink_hash = {name: j["strDrink"], id: j["idDrink"], liquor: "#{liquor}"}
+        Drink.new(drink_hash)
         end
-            
+        binding.pry
+      
+
     end
 
     def self.get_drink_by_name(drink)
@@ -33,6 +24,7 @@ class Api
         end.values.select do |j|
             j 
         end
+
         measurements = response["drinks"][0].select do |k,v|
             k.include?("strMeasure")
         end.values.select do |j|
@@ -40,17 +32,13 @@ class Api
         end
 
         recipe_array = {
-            glass: response["drinks"][0]["strGlass"], 
+        glass: response["drinks"][0]["strGlass"], 
             instructions: response["drinks"][0]["strInstructions"], 
             ingredients: ingredients, amounts: measurements, 
             name: response["drinks"][0]["strDrink"]
         }
         Recipe.new(recipe_array)
-            
-
     end
-    
-    
-
-
 end
+
+
