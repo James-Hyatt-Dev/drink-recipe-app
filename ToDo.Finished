@@ -1,0 +1,21 @@
+class Cli
+    def top_ten_drinks
+    def user_input(input)
+    def input_from_step_1(input)
+    def main_menu
+    def self.request_from_liquor
+    def ask_for_drink_or_input
+    def welcome
+
+
+class Recipe
+
+
+
+class Api
+
+
+
+class Drink
+
+
