@@ -9,15 +9,11 @@ class Drink
             self.send("#{k}=", "#{v}") if self.respond_to?("#{k}=")
         end
         @@all_drinks << self
-
-    
-    end
+     end
    
     def self.all_drinks
         @@all_drinks
+        
     end
-    
-    " "
-    " "
 
 end 

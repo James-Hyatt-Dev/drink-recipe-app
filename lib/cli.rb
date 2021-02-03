@@ -78,9 +78,10 @@ class Cli
     end
 
     def recipe_display(new_recipe)
+
         puts "All the wonderful information you requested for your drink, #{new_recipe.name}"
         puts ""
-        puts "The recommended glass to use is a/an #{new_recipe.glass}"
+        puts "The recommended glass to use is the #{new_recipe.glass}"
         puts ""
         puts "The ingredients you will need are:"
         puts "#{new_recipe.ingredients}"
@@ -144,7 +145,6 @@ class Cli
         elsif input == "2"
             new_drink = Api.get_drink_by_liquor(liquor_list["2"])
         elsif input == "3"
-            
             new_drink = Api.get_drink_by_liquor(liquor_list["3"])
         elsif input == "4"
             new_drink = Api.get_drink_by_liquor(liquor_list["4"])
@@ -158,45 +158,47 @@ class Cli
             puts "Your input was invalid"
             self.request_from_liquor
         end
-        display_drinks_by_liquor(new_drink)
+        final_display_of_drinks(new_drink)
     end
 
 
 
-    def display_drinks_by_liquor(new_drink)
-        puts ""
-        puts "Please let us know if you would like to go through the list 10 at a time, or see the whole list."
-        puts ""
-        puts "1. 10 at a time."
-        puts "2. Display the entire list. (Warning, this could be over 90 listings)"
-        input = gets.strip
+    # def display_drinks_by_liquor(new_drink)
+    #     puts ""
+    #     puts "Please let us know if you would like to go through the list 10 at a time, or see the whole list."
+    #     puts ""
+    #     puts "1. 10 at a time."
+    #     puts "2. Display the entire list. (Warning, this could be over 90 listings)"
+    #     input = gets.strip
         
-        user_liquor_drink_display(input, new_drink)
-    end
+    #     user_liquor_drink_display(input, new_drink)
+    # end
 
-    def user_liquor_drink_display(input, new_drink)
-        ten_or_more = {"1" => "10 at a time", "2" => "Display the entire list. (Warning, this could be over 90 listings)"}
-        if input == "1"
-            final_display_of_ten_drinks(new_drink)
-        elsif input == "2"
-            final_display_of_drinks(new_drink)
-        else
-            puts "Your input was invalid"
-            self.display_drinks_by_liquor
-        end
-    end
+    # def user_liquor_drink_display(new_drink)
+    #     # ten_or_more = {"1" => "10 at a time", "2" => "Display the entire list. (Warning, this could be over 90 listings)"}
+    #     # if input == "1"
+    #     #     final_display_of_ten_drink(new_drink)
+    #     # elsif input == "2"
+    #         final_display_of_drinks(new_drink)
+    #     else
+    #         puts "Your input was invalid"
+    #         self.display_drinks_by_liquor
+    #     end
+    # end
 
-    def final_display_of_ten_drink(new_drink)
-        puts "Thank you, here are the first 10 drinks from out list."                           
-        puts input
-        puts ""
-        puts "Please make a selection from the first 10 or make another selection."
-        puts "Would you like to see 10 more, or see the entire list?"
-        puts ""
-        puts "1. 10 more"
-        puts "2. Display the entire list now."
-        input = gets.strip
-    end
+
+
+    # def final_display_of_ten_drink(new_drink)
+    #     puts "Thank you, here are the first 10 drinks from out list."                           
+    #     puts ""
+    #     new_drink.each_with_index{|j,i| puts "#{i +1}. #{j.name}"}
+    #     puts "Please make a selection from the first 10 or make another selection."
+    #     puts "Would you like to see 10 more, or see the entire list?"
+    #     puts ""
+    #     puts "1. 10 more"
+    #     puts "2. Display the entire list now."
+    #     input = gets.strip
+    # end
 
         # asks user for either 10 more or all the drinks(1, all)
         # continues until complete
@@ -216,10 +218,18 @@ class Cli
         puts "Thank you, here is the list of the drinks from your selection."
         puts ""
         puts "Please make a selection from the following list by typing in the coralating number."
-        puts new_drink.name
+        new_drink.each_with_index{|j,i| puts "#{i +1}. #{j.name}"}
         input = gets.strip
-        display_drinks_by_liquor(new_drink)
+        binding.pry
+        # self.recipe_display(input)
+
+        input = Drink.all_drinks[]
+
+
+        new_recipe = Api.get_drink_by_name(input)
+        self.recipe_display(new_recipe)
     end
+
 
 
 
