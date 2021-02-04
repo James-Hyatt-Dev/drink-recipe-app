@@ -18,7 +18,6 @@ class Api
     def self.get_drink_by_name(drink)
         url = "https://www.thecocktaildb.com/api/json/v2/#{@@apikey}/search.php?s=#{drink}"
         response = HTTParty.get(url)
-binding.pry
         ingredients = response["drinks"][0].select do |k,v|
             k.include?("strIngredient")
         end.values.select do |j|
@@ -30,14 +29,14 @@ binding.pry
         end.values.select do |j|
             j 
         end
-
         recipe_array = {
             glass: response["drinks"][0]["strGlass"], 
             instructions: response["drinks"][0]["strInstructions"], 
-            ingredients: ingredients, 
-            amounts: measurements, 
+            ingredients: ingredients,
+            amounts: measurements,
             name: response["drinks"][0]["strDrink"]
         }
         Recipe.new(recipe_array)
     end
+
 end
